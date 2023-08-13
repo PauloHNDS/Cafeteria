@@ -17,6 +17,8 @@ namespace Cafeteria.Repository.Repositorios
         }
 
         public virtual async Task<List<TEntity>> Get() => await _dbSet.ToListAsync();
+
+        public virtual async Task Insert(TEntity entity) =>  await _dbSet.AddAsync(entity);
         
         public virtual async Task<TEntity?> Get(int Id) => await _dbSet.FindAsync(Id);
 
@@ -31,5 +33,7 @@ namespace Cafeteria.Repository.Repositorios
         }
 
         public virtual void Update(TEntity entity) => _contexto.Entry(entity);
+
+        public virtual async Task Persistir() => await _contexto.SaveChangesAsync();
     }
 }

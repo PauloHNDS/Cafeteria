@@ -32,7 +32,7 @@ namespace Cafeteria.Repository.Context
                 t.Property(x => x.Id)
                 .IsRequired(true)
                 .HasColumnName("ID")
-                .HasColumnType("int")
+                .HasColumnType("INTEGER")
                 .ValueGeneratedOnAdd();
 
                 t.Property(x => x.Nome)
@@ -66,7 +66,7 @@ namespace Cafeteria.Repository.Context
                 t.Property(x => x.Id)
                 .IsRequired(true)
                 .HasColumnName("ID")
-                .HasColumnType("int")
+                .HasColumnType("INTEGER")
                 .ValueGeneratedOnAdd();
 
                 t.Property(x => x.Nome)
@@ -99,7 +99,7 @@ namespace Cafeteria.Repository.Context
                 t.Property(x => x.Id)
                 .IsRequired(true)
                 .HasColumnName("ID")
-                .HasColumnType("int")
+                .HasColumnType("INTEGER")
                 .ValueGeneratedOnAdd();
 
                 t.Property(x => x.Nome)
@@ -131,7 +131,7 @@ namespace Cafeteria.Repository.Context
                 t.Property(x => x.Id)
                 .IsRequired(true)
                 .HasColumnName("ID")
-                .HasColumnType("int")
+                .HasColumnType("INTEGER")
                 .ValueGeneratedOnAdd();
 
                 t.Property(x => x.Nome)
@@ -144,10 +144,15 @@ namespace Cafeteria.Repository.Context
                 .HasColumnName("IMAGEM")
                 .HasColumnType("varchar(100)");
 
+                t.Property(x => x.Alimento_Id)
+                .IsRequired(true)
+                .HasColumnName("ALIMENTO_ID")
+                .HasColumnType("INTERGER");
+
                 t.HasOne(x => x.Alimento)
                 .WithMany(x => x.Variacaos)
-                .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired();
+                .HasForeignKey(x => x.Alimento_Id)
+                .OnDelete(DeleteBehavior.NoAction);
 
 
             });
@@ -158,14 +163,14 @@ namespace Cafeteria.Repository.Context
 
             modelBuilder.Entity<Alimento>(t =>
             {
-                t.ToTable("VARIACAO");
+                t.ToTable("ALIMENTO");
 
                 t.HasKey(x => x.Id);
 
                 t.Property(x => x.Id)
                 .IsRequired(true)
                 .HasColumnName("ID")
-                .HasColumnType("int")
+                .HasColumnType("INTEGER")
                 .ValueGeneratedOnAdd();
 
                 t.Property(x => x.Nome)
@@ -184,8 +189,14 @@ namespace Cafeteria.Repository.Context
                 .HasColumnName("VALOR")
                 .HasColumnType("decimal(12,4)");
 
+                t.Property(x => x.Categoria_Id)
+                .IsRequired(true)
+                .HasColumnName("CATEGORIA_ID")
+                .HasColumnType("INTERGER");
+
                 t.HasOne(x => x.Categoria)
                 .WithMany(x => x.Alimentos)
+                .HasForeignKey(x => x.Categoria_Id)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired(true);
 
@@ -204,8 +215,7 @@ namespace Cafeteria.Repository.Context
                 t.Property(x => x.Id)
                 .IsRequired(true)
                 .HasColumnName("ID")
-                .HasColumnType("int")
-                .ValueGeneratedOnAdd();
+                .HasColumnType("INTEGER");
 
                 t.Property(x => x.Nome)
                 .IsRequired(true)

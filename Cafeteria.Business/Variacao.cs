@@ -8,6 +8,8 @@
 
         public string Imagem { get; set; } = String.Empty;
 
+        public int Alimento_Id { get; set; }
+
         public Alimento? Alimento { get; set; } 
     }
 }

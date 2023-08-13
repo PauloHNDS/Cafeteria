@@ -10,6 +10,8 @@
 
         public decimal Valor { get; set; } = 0M;
 
+        public int Categoria_Id { get; set; }
+
         public virtual Categoria? Categoria { get; set; }
 
         public virtual List<Variacao> Variacaos { get; set; } = new List<Variacao>();
